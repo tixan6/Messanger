@@ -2,6 +2,7 @@
     ViewData["Title"] = "reg";
     Layout = "_LayoutReg";
 }
+@model Messanger.Models.RegData
 @section registration {
 
     <body>
@@ -15,20 +16,53 @@
                         <img src="~/img/Logo-icon.png" />
                     </div>
 
-                    <div class="title-autorisation">
+                    <div class="title-registration">
                         <h3>Регеистрация</h3>
 
                         <div class="GeneralError">
                             @Html.ValidationSummary(true)
                         </div>
 
+                        <div class="center-panelAlign">
+                            @using (Html.BeginForm("nextStep", "Reg", FormMethod.Post))
+                            {
+                                
 
+                                <div class="reg-email" id="itemsMargin-regPanel">
+                                    @Html.ValidationMessageFor(x => x.Email)
+                                    @Html.EditorFor(x => x.Email, new {htmlAttributes = new {placeholder = "Введите почту"}})
+                                </div>
+
+                                <div class="reg-pass" id="itemsMargin-regPanel">
+                                    @Html.ValidationMessageFor(x => x.Password)
+                                    @Html.EditorFor(x => x.Password, new {htmlAttributes = new {placeholder = "Введите пароль"}})
+                                </div>
+
+                                <div class="reg-Repeatpass" id="itemsMargin-regPanel">
+                                    @Html.ValidationMessageFor(x => x.RepPassword)
+                                    @Html.EditorFor(x => x.RepPassword, new {htmlAttributes = new {placeholder = "Повторите пароль"}})
+                                </div>
+
+
+
+
+                                <div class="btn-submit-login">
+                                    <input type="submit" value="Готово">
+                                </div>
+                   
+                            }
+
+                            <div class="reg-panelInFooter">
+                                <p>Всё же у вас есть аккаунт?</p>
+                                @Html.ActionLink("Вход", "Index", "Authorization")
+                            </div>
+
+                        </div>
                         
                     </div>
 
                 </div>
             </div>
-
         </div>
     </body>
 }

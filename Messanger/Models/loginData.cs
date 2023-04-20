@@ -8,6 +8,7 @@ namespace Messanger.Models
         public string email { get; set; }
 
         [Required(ErrorMessage = "Пожалуйста, введите пароль")]
+        [DataType(DataType.Password)]
         public string password { get; set; }
 
         public bool rememberData { get; set; }
