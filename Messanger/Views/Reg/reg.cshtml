@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "reg";
+    Layout = "_LayoutReg";
+}
+@section registration {
+
+    <body>
+        <div class="container">
+
+            <div class="take">
+                <div class="logInPanel">
+                    <div class="logo">
+                        <p class="Text-logo">Namla</p>
+                        <div style="width: 11px; height: 5px;"></div>
+                        <img src="~/img/Logo-icon.png" />
+                    </div>
+
+                    <div class="title-autorisation">
+                        <h3>Регеистрация</h3>
+
+                        <div class="GeneralError">
+                            @Html.ValidationSummary(true)
+                        </div>
+
+
+                        
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </body>
+}

@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "_Layout";
+}
+@model Messanger.Models.loginData
+@section panelLogAndResetPassw {
+
+    <body>
+        <div class="container">
+
+            <div class="take">
+                <div class="logInPanel">
+                    <div class="logo">
+                        <p class="Text-logo">Namla</p>
+                        <div style="width: 11px; height: 5px;"></div>
+                        <img src="~/img/Logo-icon.png" />
+                    </div>
+
+                    <div class="title-autorisation">
+                        <h3>Вход</h3>
+
+                        <div class="GeneralError">
+                            @Html.ValidationSummary(true)
+                            
+                        </div>
+
+
+                        <div class="autorisation-inputs">
+
+                            @using (Html.BeginForm("loginData", "Authorization", FormMethod.Post))
+                            {
+                                <div class="login-email">
+                                  @Html.ValidationMessageFor(x => x.email)
+                                  @Html.EditorFor(x => x.email, new {htmlAttributes = new {placeholder = "Почта"}})  
+                                  
+                                </div>
+                                
+                                <div class="login-password">
+                                    @Html.ValidationMessageFor(x => x.password)
+                                    @Html.EditorFor(x => x.password, new {htmlAttributes = new {placeholder = "Пароль"}})
+                                    
+                                </div>
+
+                                <div class="panel-under-inputs">
+                                    <div class="remember-data">
+                                        @Html.CheckBoxFor(x => x.rememberData)
+                                        <p>Запомнить</p>
+                                    </div>
+
+                                    @Html.ActionLink("Забыли пароль", "sdsdsd")
+                                   
+                                </div>
+
+                                <div class="btn-submit-login"> 
+                                    <input type="submit" value="Войти">
+                                </div>
+                            }
+
+
+                            <div class="reg-panelInFooter">
+                                <p>У вас еще нет аккаунта?</p>
+                                @Html.ActionLink("Создайте его", "reg", "Reg")
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </body>
+}
+
