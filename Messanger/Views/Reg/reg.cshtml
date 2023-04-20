@@ -19,8 +19,8 @@
                     <div class="title-registration">
                         <h3>Регеистрация</h3>
 
-                        <div class="GeneralError">
-                            @Html.ValidationSummary(true)
+                        <div class="messageDelele">
+                            <p>Помните! Вы всегда можете удалить свой аккаунт в личном кабинете, при этом все данные будут удалены без возвратно </p>
                         </div>
 
                         <div class="center-panelAlign">
@@ -42,8 +42,6 @@
                                     @Html.ValidationMessageFor(x => x.RepPassword)
                                     @Html.EditorFor(x => x.RepPassword, new {htmlAttributes = new {placeholder = "Повторите пароль"}})
                                 </div>
-
-
 
 
                                 <div class="btn-submit-login">

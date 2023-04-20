@@ -12,10 +12,7 @@ namespace Messanger.Controllers
             return View();
         }
 
-
-
-
-        //[HttpPost]
+        [HttpPost]
         public IActionResult nextStep(RegData model) 
         {
             

@@ -20,15 +20,5 @@ namespace Messanger.Models
         [DataType(DataType.Password)]
         public string RepPassword { get; set; }
 
-
-
-
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string patronymic { get; set; }
-        public uint age { get; set; }
-        public string country { get; set; }
-        public bool gender { get; set; }
-
     }
 }

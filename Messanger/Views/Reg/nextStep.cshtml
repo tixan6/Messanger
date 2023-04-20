@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "nextStep11";
+    Layout = "_LayoutReg";
+}
+@model Messanger.Models.RegDataSecondStep
+@section registration {
+
+    <body>
+        <div class="container">
+
+            <div class="take">
+                <div class="logInPanel">
+                    <div class="logo">
+                        <p class="Text-logo">Namla</p>
+                        <div style="width: 11px; height: 5px;"></div>
+                        <img src="~/img/Logo-icon.png" />
+                    </div>
+
+                    <div class="title-registration">
+                        <h3>Осталось еще чуть чуть</h3>
+
+                        <div class="GeneralError">
+                            @Html.ValidationSummary(true)
+                        </div>
+                        
+                        <div class="center-panelAlign">
+                            @using (Html.BeginForm("nextStep", "Reg", FormMethod.Post))
+                            {
+                                <div class="reg-personalData">
+
+                                    <div class="centerAlignItems-scdStep">
+
+                                        <div class="blockName-reg" id="paddingForItems-blockName">
+                                            @Html.EditorFor(x => x.Name, new {htmlAttributes = new {placeholder = "Имя"}})
+                                        </div>
+
+                                        <div class="blockSurName-reg" id="paddingForItems-blockName">
+                                            @Html.EditorFor(x => x.Surname, new {htmlAttributes = new {placeholder = "Фамилия"}})
+                                        </div>
+                                    </div>
+
+                                    <div class="centerAlignItems-scdStep">
+
+                                        <div class="blockPatronymic-reg" id="paddingForItems-blockName">
+                                            @Html.EditorFor(x => x.patronymic, new {htmlAttributes = new {placeholder = "Отчество"}})
+                                        </div>
+
+                                        <div class="blockAge-reg" id="paddingForItems-blockName">
+                                            <input class="text-box single-line" data-val="true" data-val-required="The age field is required."
+                                            id="age" name="age" placeholder="Возраст" type="number" value="" min="0">                                           
+                                        </div>
+                                    </div>
+
+
+                                    <div class="centerAlignItems-scdStep">
+                                      
+                                        <div class="blockCountry-reg">
+                                            <p>Это поле не обязательно</p>
+                                            @Html.EditorFor(x => x.country, new {htmlAttributes = new {placeholder = "Страна"}})
+                                        </div>
+                                        
+                                    </div>
+
+
+                                    <div class="centerAlignItems-scdStep">
+
+                                        <div class="block-reg">
+                                            <p class="genderTitle">Ваш пол?</p>
+
+                                            <div class="borderForGender" id="innerBorderItems">
+
+                                                <div id="alignItems-genger">
+                                                    @Html.RadioButtonFor(m => m.gender, "Мужской")
+                                                    <p>Мужской</p>
+                                                </div>
+
+                                                <div id="alignItems-genger">
+                                                    @Html.RadioButtonFor(m => m.gender, "Женский")
+                                                    <p>Женский</p>
+                                                </div>                                             
+                                                
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                
+
+                                <div class="btn-submit-login" id="endRegPanel">
+                                    <input type="submit" value="Завершить регистрацию">
+                                </div>
+
+                            }
+
+                            <div>
+                                <div class="reg-panelToBeforeStep">
+                                    @Html.ActionLink("На один шаг назад?", "reg", "Reg")
+                                </div>
+
+                                <div class="reg-panelInFooter">
+                                    <p>Всё же у вас есть аккаунт?</p>
+                                    @Html.ActionLink("Вход", "Index", "Authorization")
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+}
