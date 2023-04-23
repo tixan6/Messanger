@@ -26,6 +26,21 @@ namespace Messanger.Controllers
             
         }
 
+
+        public IActionResult lastStep(RegDataSecondStep regDataSecondStep) 
+        {
+            ModelState.AddModelError("", "Заполните все поля");
+            if (ModelState.IsValid)
+            {
+                return View();
+            }
+            else
+            {
+                return View("nextStep");
+            }
+            
+        }
+
       
     }
 }
