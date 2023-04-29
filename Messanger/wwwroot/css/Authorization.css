@@ -154,11 +154,13 @@ h3 {
     background-color: aliceblue;
 }
 .field-validation-error {
+    transition: all 0.5s ease;
+    opacity: 0;
+
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     color: #FF685E;
     font-size: 10px;
-
     margin-top: -15px;
     position: fixed;
 }

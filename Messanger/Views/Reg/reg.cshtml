@@ -35,7 +35,7 @@
 
                                 <div class="reg-pass" id="itemsMargin-regPanel">
                                     @Html.ValidationMessageFor(x => x.Password)
-                                    @Html.EditorFor(x => x.Password, new {htmlAttributes = new {placeholder = "Введите пароль"}})
+                                    @Html.EditorFor(x => x.Password, new {htmlAttributes = new {placeholder = "Введите пароль"}})                                
                                 </div>
 
                                 <div class="reg-Repeatpass" id="itemsMargin-regPanel">
@@ -43,6 +43,10 @@
                                     @Html.EditorFor(x => x.RepPassword, new {htmlAttributes = new {placeholder = "Повторите пароль"}})
                                 </div>
 
+                                <div class="showingPass">
+
+                                    <p onclick="show(this)">Показать пароль</p>
+                                </div>
 
                                 <div class="btn-submit-login">
                                     <input type="submit" value="Готово">
@@ -62,5 +66,6 @@
                 </div>
             </div>
         </div>
+        <script src="~/js/showingPass.js"></script>
     </body>
 }

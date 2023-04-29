@@ -25,6 +25,7 @@ body {
     
 }
 .logInPanel {
+    
     width: 442px;
     height: 559px;
     background: rgb(111,195,255);
@@ -251,18 +252,34 @@ h3 {
 }
 
 
+/*Скрыть пароль или показать*/
+.showingPass {
+    user-select: none;
+    transition: 0.2s;
+    color: #C5DEEF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    align-self: center;
+}
+.showingPass p:hover{
+    transition: 0.2s;
+    color: #fff;
+    
+}
 /*Валидация на сервере*/
 .input-validation-error {
     border: 2px solid #FF685E;
-    background-color: aliceblue;
 }
 .field-validation-error {
     transition: all 0.5s ease;
+    opacity: 0;
+
+
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     color: #FF685E;
     font-size: 10px;
-
     margin-top: -15px;
     position: fixed;
 }
