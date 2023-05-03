@@ -1,9 +1,12 @@
-﻿
+﻿@using System.Text.RegularExpressions;
+@using Messanger.Controllers;
+@using Messanger.Scripts;
+
 @{
     ViewData["Title"] = "lastStep";
     Layout = "_LayoutReg";
 }
-@model Messanger.Models.RegDataSecondStep
+@model Messanger.Models.ConfirmEmail
 @section registration {
 
     <body>
@@ -19,30 +22,81 @@
 
                     <div class="title-registration">
                         <h3>
-                            Нам нужно убедиться что ваша почта действительно
+                            Нам нужно убедиться что почта действительно
                             принадлежит вам
                         </h3>
+
+                        <h2>
+                            @{
+                                //Отправить данные на почту
+                                   //..
+
+
+                                dataStepStatic.code = RandomCodeConfirm.codeConfirm();
+
+                                //string reg = @"(\S{1})(\S+?)(\S{1})(?=[@])";
+                                string email = ViewBag.email;
+                                char[] emailChar;
+                                emailChar = dataStepStatic.email.ToCharArray();
+                                for (int i = 1; i < emailChar.Length-1; i++)
+                                {
+                                    if (emailChar[i] != '@' && emailChar[i] != '.')
+                                    {
+                                        emailChar[i] = '*';
+                                    }
+                                }
+                                string result = new string(emailChar);
+                                <span>@result</span>
+                            }
+                            
+                        </h2>
 
                         <div class="GeneralError">
                             @Html.ValidationSummary(true)
                         </div>
 
                         <div class="center-panelAlign">
-                            @using (Html.BeginForm("lastStep", "Reg", FormMethod.Post))
+                            @using (Html.BeginForm("ConfirmEmail", "Reg", FormMethod.Post))
                             {
-                                <div class="btn-submit-login" id="endRegPanel">
-                                    <input type="submit" value="Завершить регистрацию">
+
+                                <div class="text-info">
+                                    <p>
+                                        На почту был выслан код, пожалуйста введите его сюда
+                                    </p>
+                                </div>
+
+                                <div class="inputCode" >
+                                    @Html.ValidationMessageFor(x => x.codeConfirmEmail)
+
+                                    <input class="text-box single-line" data-val="true"
+                                           data-val-required="Пожалуйста, введите почту" id="codeConfirmEmail"
+                                           name="codeConfirmEmail" placeholder="Код" type="text" value="">
+
+                                </div>
+
+
+
+                                <div class="btnCode">
+                                    <div class="btn-confirm">
+                                        <input type="submit" value="Подтвердить">
+                                    </div>
+                                </div>
+                                
+
+
+
+
+
+                                <div class="showingPass">
+                                    <p>Код не пришёл?</p>
                                 </div>
                             }
 
                             <div>
-                                <div class="reg-panelToBeforeStep">
-                                    @Html.ActionLink("На один шаг назад?", "reg", "Reg")
-                                </div>
 
                                 <div class="reg-panelInFooter">
-                                    <p>Всё же у вас есть аккаунт?</p>
-                                    @Html.ActionLink("Вход", "Index", "Authorization")
+                                    <p>Вы ошиблись вводе данных?</p>
+                                    @Html.ActionLink("Изменить", "reg", "Reg")
                                 </div>
                             </div>
 

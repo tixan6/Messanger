@@ -5,6 +5,19 @@ using System.Diagnostics;
 
 namespace Messanger.Controllers
 {
+    public static class dataStepStatic
+    {
+        public static string email { get; set; }
+        public static string pass { get; set; }
+
+
+
+        public static string code { get; set; }
+
+
+        
+    }
+        
     public class RegController : Controller
     {
         public IActionResult reg()
@@ -13,9 +26,11 @@ namespace Messanger.Controllers
         }
 
         [HttpPost]
-        public IActionResult nextStep(RegData model) 
+        public IActionResult nextStep(RegData reg) 
         {
-            
+            dataStepStatic.email = reg.Email;
+            dataStepStatic.pass = reg.Password;
+
             if (ModelState.IsValid)
             {
                 return View();
@@ -29,7 +44,9 @@ namespace Messanger.Controllers
 
         public IActionResult lastStep(RegDataSecondStep regDataSecondStep) 
         {
-            
+            ViewBag.email = dataStepStatic.email;
+            ViewBag.pass = dataStepStatic.pass;
+
             if (ModelState.IsValid)
             {
                 return View();
@@ -42,6 +59,27 @@ namespace Messanger.Controllers
             
         }
 
-      
+
+        [HttpPost]
+        public IActionResult ConfirmEmail(ConfirmEmail confirmEmail)
+        {
+
+
+            if (ModelState.IsValid && dataStepStatic.code == confirmEmail.codeConfirmEmail)
+            {
+                //Вход в аккаут             
+                return View();
+                
+            }
+            else
+            {
+                //Ошибка ввода
+                return View("lastStep");
+            }
+
+
+        }
+
+
     }
 }

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Xunit.Abstractions;
+
 namespace Messanger.Models
 {
     public class RegData
     {
+
         [Required(ErrorMessage = "Введите почту")]
         [RegularExpression(@"^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$", ErrorMessage = "Недопустимый адрес почты")]
         public string Email { get; set; }
@@ -20,5 +22,7 @@ namespace Messanger.Models
         [DataType(DataType.Password)]
         public string RepPassword { get; set; }
 
+
+       
     }
 }

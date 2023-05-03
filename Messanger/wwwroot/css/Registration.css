@@ -76,7 +76,7 @@ h3 {
     -webkit-transition: border-color 0.3s linear;
     transition: border-color 0.3s linear;
 
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .btn-submit-login input:hover {
@@ -98,7 +98,7 @@ h3 {
 .panel-under-inputs {
     margin-top: 6px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 .panel-under-inputs a {
     transition: 0.2s;
@@ -235,22 +235,24 @@ h3 {
     color: #B7D7EF;
 }
 #endRegPanel input {
-    width: 220px; 
+    width: 200px; 
 }
 h3 {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .messageDelele {
+    text-align: -webkit-center;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-size: 15px;
     line-height: 18px;
-    text-align: center;
     color: rgba(255, 255, 255, 0.5);
 }
-
+.messageDelele p {
+    width: 360px
+}
 
 /*Скрыть пароль или показать*/
 .showingPass {
@@ -267,15 +269,62 @@ h3 {
     color: #fff;
     
 }
+.title-registration h2 {
+    text-align-last: center;
+    color: #C5DEEF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    font-size: 15px;
+}
+#codeConfirmEmail {
+    width: 160px;
+}
+.text-info p {
+    color: #C5DEEF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    width: 240px;
+}
+.text-info {
+    text-align: -webkit-center;
+    margin-top: 30px;
+}
+.inputCode 
+{
+    margin-top: 30px;
+}
+
+.btn-confirm input {
+    width: 110px;
+    height: 31px;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: #444444;
+    background: #fff;
+    border: 1px solid #fff;
+    -webkit-transition: border-color 0.3s linear;
+    transition: border-color 0.3s linear;
+    margin-top: 10px;
+}
+
+    .btn-confirm input:hover {
+        border: solid 1px #444444;
+    }
+
+
 /*Валидация на сервере*/
 .input-validation-error {
     border: 2px solid #FF685E;
 }
+.validation-summary-errors {
+    transition: all 0.5s ease;
+    opacity: 0;
+}
 .field-validation-error {
     transition: all 0.5s ease;
     opacity: 0;
-
-
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     color: #FF685E;
@@ -289,6 +338,6 @@ ul {
     padding: 0;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    color: #FF3022;
+    color: #ff5448;
     font-size: 12px;
 }
