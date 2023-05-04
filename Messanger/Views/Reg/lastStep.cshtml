@@ -1,5 +1,6 @@
 ﻿@using System.Text.RegularExpressions;
 @using Messanger.Controllers;
+@using Messanger.Models;
 @using Messanger.Scripts;
 
 @{
@@ -29,11 +30,12 @@
                         <h2>
                             @{
                                 //Отправить данные на почту
-                                   //..
-
-
-                                dataStepStatic.code = RandomCodeConfirm.codeConfirm();
-
+                                //..                             
+                               
+                                if (dataStepStatic.code == null)
+                                    dataStepStatic.code = RandomCodeConfirm.codeConfirm();
+                                
+                                
                                 //string reg = @"(\S{1})(\S+?)(\S{1})(?=[@])";
                                 string email = ViewBag.email;
                                 char[] emailChar;
@@ -51,9 +53,6 @@
                             
                         </h2>
 
-                        <div class="GeneralError">
-                            @Html.ValidationSummary(true)
-                        </div>
 
                         <div class="center-panelAlign">
                             @using (Html.BeginForm("ConfirmEmail", "Reg", FormMethod.Post))
@@ -65,7 +64,11 @@
                                     </p>
                                 </div>
 
-                                <div class="inputCode" >
+                                <div class="GeneralError">
+                                    @Html.ValidationSummary(true)
+                                </div>
+
+                                <div class="inputCode" id="errorMessageCode">
                                     @Html.ValidationMessageFor(x => x.codeConfirmEmail)
 
                                     <input class="text-box single-line" data-val="true"
@@ -83,12 +86,8 @@
                                 </div>
                                 
 
-
-
-
-
-                                <div class="showingPass">
-                                    <p>Код не пришёл?</p>
+                                <div class="showingPass" id="resetCode">
+                                    @Html.ActionLink("Код не пришёл?", "ResetCode", "Reg")
                                 </div>
                             }
 

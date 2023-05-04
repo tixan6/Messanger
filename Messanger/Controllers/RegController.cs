@@ -1,4 +1,5 @@
 ﻿using Messanger.Models;
+using Messanger.Scripts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
@@ -9,13 +10,7 @@ namespace Messanger.Controllers
     {
         public static string email { get; set; }
         public static string pass { get; set; }
-
-
-
-        public static string code { get; set; }
-
-
-        
+        public static string code { get; set; }      
     }
         
     public class RegController : Controller
@@ -62,24 +57,33 @@ namespace Messanger.Controllers
 
         [HttpPost]
         public IActionResult ConfirmEmail(ConfirmEmail confirmEmail)
-        {
-
-
-            if (ModelState.IsValid && dataStepStatic.code == confirmEmail.codeConfirmEmail)
+        {          
+            if (ModelState.IsValid)
             {
-                //Вход в аккаут             
-                return View();
-                
+                if (dataStepStatic.code == confirmEmail.codeConfirmEmail)
+                {
+                    //Вход в аккаут                 
+                    return View("loginData");                 
+                }
+                else
+                {
+                    //Ошибка ввода
+                    ModelState.AddModelError("", "Код неверный");
+                    return View("lastStep");
+                }            
             }
             else
-            {
+            {              
                 //Ошибка ввода
                 return View("lastStep");
             }
-
-
         }
-
-
+        
+        public IActionResult ResetCode() 
+        {
+            dataStepStatic.code = RandomCodeConfirm.codeConfirm();
+            //Вызов метода для отправлки кода на почту
+            return View("lastStep");
+        }
     }
 }

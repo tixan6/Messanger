@@ -253,7 +253,23 @@ h3 {
 .messageDelele p {
     width: 360px
 }
-
+.showingPass a {
+    margin-top: 30px;
+    text-decoration: none;
+    transition: 0.2s;
+    color: #C5DEEF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    align-self: center;
+}
+    .showingPass a:hover {
+        transition: 0.2s;
+        color: #fff;
+    }
+#resetCode {
+    margin: 10px;
+}
 /*Скрыть пароль или показать*/
 .showingPass {
     user-select: none;
@@ -292,7 +308,7 @@ h3 {
 }
 .inputCode 
 {
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .btn-confirm input {
@@ -315,6 +331,9 @@ h3 {
 
 
 /*Валидация на сервере*/
+#errorMessageCode .field-validation-error {
+    margin-left: 43px;
+}
 .input-validation-error {
     border: 2px solid #FF685E;
 }
