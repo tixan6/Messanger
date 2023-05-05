@@ -77,20 +77,24 @@
 
                                 </div>
 
+                            
 
-
-                                <div class="btnCode">
-                                    <div class="btn-confirm">
-                                        <input type="submit" value="Подтвердить">
-                                    </div>
+                            <div class="btnCode">
+                                <div class="btn-confirm">
+                                    <input type="submit" value="Подтвердить">
                                 </div>
-                                
+                            </div>
 
-                                <div class="showingPass" id="resetCode">
-                                    @Html.ActionLink("Код не пришёл?", "ResetCode", "Reg")
+
+                            <div class="showingPass" id="resetCode">
+                                @Html.ActionLink("Код не пришёл?", "ResetCode", "Reg")
                                 </div>
                             }
-
+                            @{
+                                <h3>
+                                    <span>@ViewBag.messageResetCode</span>
+                                </h3>
+                            }
                             <div>
 
                                 <div class="reg-panelInFooter">

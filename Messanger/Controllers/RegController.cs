@@ -83,6 +83,7 @@ namespace Messanger.Controllers
         {
             dataStepStatic.code = RandomCodeConfirm.codeConfirm();
             //Вызов метода для отправлки кода на почту
+            ViewBag.messageResetCode = "Код выслан повторно";
             return View("lastStep");
         }
     }

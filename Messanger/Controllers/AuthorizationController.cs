@@ -42,5 +42,39 @@ namespace Messanger.Controllers
             
 
         }
+
+        public IActionResult ResetPassword() 
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public IActionResult ResetPassword(ResetPasstEmail resetPasstEmail)
+        {
+            //Запрос к БД, если есть то перейти к новому этапу - если нет, то выдать ошибку
+
+            if (ModelState.IsValid)
+            {
+                //Если запрос к БД нашел почту
+                //if (данные есть)
+                //{
+                    return View("//Новая СТР");
+                //}
+                //else 
+                //{
+                    ModelState.AddModelError("", "Пользователя с такой почтой не существует");
+                //}
+                
+            }
+            else
+            {
+                
+                return View();
+                //Вернуть туже страницу с ошибкой
+            }
+            
+        }
     }
 }
