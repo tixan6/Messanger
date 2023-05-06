@@ -2,6 +2,7 @@
 @using Messanger.Controllers;
 @using Messanger.Models;
 @using Messanger.Scripts;
+@using Messanger.Scripts.SMTPSendingToMail;
 
 @{
     ViewData["Title"] = "lastStep";
@@ -29,13 +30,16 @@
 
                         <h2>
                             @{
-                                //Отправить данные на почту
-                                //..                             
-                               
+                            //Отправить данные на почту
+
+
                                 if (dataStepStatic.code == null)
                                     dataStepStatic.code = RandomCodeConfirm.codeConfirm();
+
+                              
+                      
                                 
-                                
+
                                 //string reg = @"(\S{1})(\S+?)(\S{1})(?=[@])";
                                 string email = ViewBag.email;
                                 char[] emailChar;
@@ -87,8 +91,8 @@
 
 
                             <div class="showingPass" id="resetCode">
-                                @Html.ActionLink("Код не пришёл?", "ResetCode", "Reg")
-                                </div>
+                                @Html.ActionLink("Выслать код повторно?", "ResetCode", "Reg")
+                            </div>
                             }
                             @{
                                 <h3>

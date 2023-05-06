@@ -3,7 +3,7 @@ using Messanger.Scripts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
-
+using Messanger.Scripts.SMTPSendingToMail;
 namespace Messanger.Controllers
 {
     public static class dataStepStatic
@@ -26,6 +26,10 @@ namespace Messanger.Controllers
             dataStepStatic.email = reg.Email;
             dataStepStatic.pass = reg.Password;
 
+            dataStepStatic.code = RandomCodeConfirm.codeConfirm();
+            Sending sending = new Sending(dataStepStatic.email, dataStepStatic.code);
+            sending.SendMessage();
+
             if (ModelState.IsValid)
             {
                 return View();
@@ -40,7 +44,8 @@ namespace Messanger.Controllers
         public IActionResult lastStep(RegDataSecondStep regDataSecondStep) 
         {
             ViewBag.email = dataStepStatic.email;
-            ViewBag.pass = dataStepStatic.pass;
+            ViewBag.pass = dataStepStatic.pass;          
+
 
             if (ModelState.IsValid)
             {
@@ -57,7 +62,7 @@ namespace Messanger.Controllers
 
         [HttpPost]
         public IActionResult ConfirmEmail(ConfirmEmail confirmEmail)
-        {          
+        {
             if (ModelState.IsValid)
             {
                 if (dataStepStatic.code == confirmEmail.codeConfirmEmail)
@@ -78,11 +83,14 @@ namespace Messanger.Controllers
                 return View("lastStep");
             }
         }
-        
+
+
         public IActionResult ResetCode() 
         {
+            ViewBag.email = dataStepStatic.email;
             dataStepStatic.code = RandomCodeConfirm.codeConfirm();
-            //Вызов метода для отправлки кода на почту
+            Sending sending = new Sending(dataStepStatic.email, dataStepStatic.code);
+            sending.SendMessage();
             ViewBag.messageResetCode = "Код выслан повторно";
             return View("lastStep");
         }
