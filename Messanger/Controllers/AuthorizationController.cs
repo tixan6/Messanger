@@ -31,40 +31,45 @@ namespace Messanger.Controllers
 
             if (ModelState.IsValid)
             {
+                string pass = string.Empty;
                 string hashLoginPass = Hash.HashPassword(loginInfo.password);
                 Connect connect = new Connect($"SELECT \"Users\".\"password\" FROM \"Users\" WHERE \"Users\".\"email\" = '{loginInfo.email.Trim()}'");
                 connect.ConnectionOpen();
-                NpgsqlDataReader items = connect.reuslt();
-                connect.ConnectionClose();
-                string pass = string.Empty;
-                if (items.HasRows)
-                {
-                    while (items.Read())
-                    {
-                        pass = items.GetValue(0).ToString();
-                    }
-                   
 
-                    if (Hash.VerifyHashedPassword(pass, loginInfo.password))
-                    {
-                        return View();
-                    }
-                    else 
-                    {
-                        ModelState.AddModelError("", "Пароль или логин неверный");
-                        return View("Index");
-                    }              
+                object items = connect.reuslt();
+
+                if (items is NpgsqlDataReader)
+                {
+                    NpgsqlDataReader itemsReader = (NpgsqlDataReader)items;
+
+                        while (itemsReader.Read())
+                        {
+                            pass = itemsReader.GetValue(0).ToString();
+                        }
+
+                        connect.ConnectionClose();
+                        if (Hash.VerifyHashedPassword(pass, loginInfo.password))
+                        {
+                            return View();
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Пароль или логин неверный");
+                            return View("Index");
+                        }
                 }
-                else 
+                else
                 {
                     ModelState.AddModelError("", "Пароль или логин неверный");
                     return View("Index");
-                }              
+                }
+
             }
             else
             {
                 return View("Index");
-            }        
+            }     
+            
         }
         public IActionResult ResetPassword() 
         {

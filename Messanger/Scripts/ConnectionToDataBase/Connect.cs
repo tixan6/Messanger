@@ -38,7 +38,7 @@ namespace Messanger.Scripts.ConnectionToDataBase
             connection.Close();
         }
 
-        public NpgsqlDataReader reuslt()
+        public object reuslt()
         {
             
             NpgsqlCommand command = new NpgsqlCommand(query, connection);
@@ -50,7 +50,7 @@ namespace Messanger.Scripts.ConnectionToDataBase
             }
             else
             {
-                return npgSqlDataReader = null;
+                return new Exception("Нет данных");
             }
         }
     }

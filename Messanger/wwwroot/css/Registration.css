@@ -306,10 +306,19 @@ h3 {
     text-align: -webkit-center;
     margin-top: 30px;
 }
-.inputCode 
-{
+.inputCode {
+    
+    text-align-last: center;
     margin-top: 15px;
 }
+
+    .inputCode .text-box {
+        text-align: center;
+        text-indent: 0;
+    }
+
+
+
 
 .btn-confirm input {
     width: 110px;

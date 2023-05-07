@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Messanger.Scripts.SMTPSendingToMail;
 using Messanger.Scripts.ConnectionToDataBase;
 using Npgsql;
-using System.Security.Cryptography;
 using Messanger.Scripts.HashPasswd;
 
 namespace Messanger.Controllers
@@ -31,24 +30,34 @@ namespace Messanger.Controllers
         [HttpPost]
         public IActionResult nextStep(RegData reg) 
         {
-            dataStepStatic.email = reg.Email;
-            dataStepStatic.pass = reg.Password;
-
-            dataStepStatic.code = RandomCodeConfirm.codeConfirm();
-            Sending sending = new Sending(dataStepStatic.email, dataStepStatic.code);
-            sending.SendMessage();
-
+            Connect connect = new Connect($"SELECT * FROM \"Users\" WHERE email = '{reg.Email}'");
+            connect.ConnectionOpen();
+            object data = connect.reuslt();
             if (ModelState.IsValid)
             {
-                return View();
+                if (data is NpgsqlDataReader)
+                {
+                    ModelState.AddModelError("email", "Пользователь с таким адресом зарегистрирован");
+                    connect.ConnectionClose();
+                    return View("reg");
+                }
+                else
+                {             
+                    dataStepStatic.email = reg.Email;
+                    dataStepStatic.pass = reg.Password;
+
+                    dataStepStatic.code = RandomCodeConfirm.codeConfirm();
+                    Sending sending = new Sending(dataStepStatic.email, dataStepStatic.code);
+                    sending.SendMessage();
+                    return View();
+                }
             }
-            else { 
-                return View("reg"); 
+            else
+            {
+                return View("reg");
             }
             
         }
-
-
         public IActionResult lastStep(RegDataSecondStep regDataSecondStep) 
         {
             ViewBag.email = dataStepStatic.email;
@@ -59,8 +68,6 @@ namespace Messanger.Controllers
             dataStepStatic.patronymic = regDataSecondStep.patronymic;
             dataStepStatic.age = regDataSecondStep.age;
             dataStepStatic.gender = regDataSecondStep.gender;
-
-
 
             if (ModelState.IsValid)
             {
@@ -88,16 +95,15 @@ namespace Messanger.Controllers
                     {
                         Connect connect = new Connect($"INSERT INTO \"Users\" (\"email\", \"password\", \"name\", \"surname\", \"patronymic\", \"age\", \"gender\") VALUES\r\n('{dataStepStatic.email}', '{hashPass}', '{dataStepStatic.name}', '{dataStepStatic.surname}', '{dataStepStatic.patronymic}', {dataStepStatic.age}, '{dataStepStatic.gender}')"); ;
                         connect.ConnectionOpen();
-                        NpgsqlDataReader data = connect.reuslt();
+                        object data = connect.reuslt();
+                        //NpgsqlDataReader dataReader = (NpgsqlDataReader)data;
                         connect.ConnectionClose();
                         return View("loginData");
                     }
                     else
                     {
                         return View("lastStep");
-                    }
-
-                                   
+                    }              
                 }
                 else
                 {

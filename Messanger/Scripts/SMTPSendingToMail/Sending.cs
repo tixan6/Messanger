@@ -18,20 +18,29 @@ namespace Messanger.Scripts.SMTPSendingToMail
 
         public void SendMessage() 
         {
-            //From
-            MailAddress from = new MailAddress(Sender, "Регистрация");
-            //To
-            MailAddress to = new MailAddress(Recipient);
-            //body
-            MailMessage message = new MailMessage(from, to);
-            message.Subject = "Тестовое письмо";
-            message.Body = "Код регистрации пользователя, не сообщайте код никому: " + text;
+            try
+            {
+                //From
+                MailAddress from = new MailAddress(Sender, "Регистрация");
+                //To
+                MailAddress to = new MailAddress(Recipient);
+                //body
+                MailMessage message = new MailMessage(from, to);
+                message.Subject = "Тестовое письмо";
+                message.Body = "Код регистрации пользователя, не сообщайте код никому: " + text;
 
-            //SMTP
-            SmtpClient smtpClient = new SmtpClient("smtp.yandex.ru", 587);
-            smtpClient.Credentials = new NetworkCredential("lloshonkov@yandex.by", "dertropkxwepkwet");
-            smtpClient.EnableSsl = true;
-            smtpClient.Send(message);
+                //SMTP
+                SmtpClient smtpClient = new SmtpClient("smtp.yandex.ru", 587);
+                smtpClient.Credentials = new NetworkCredential("lloshonkov@yandex.by", "dertropkxwepkwet");
+                smtpClient.EnableSsl = true;
+                smtpClient.Send(message);
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Ошибка при отправлении данных");
+            }
+            
         }
 
 

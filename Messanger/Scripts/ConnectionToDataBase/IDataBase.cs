@@ -9,6 +9,6 @@ namespace Messanger.Scripts.ConnectionToDataBase
         void ConnectionOpen();
         void ConnectionClose();
 
-        NpgsqlDataReader reuslt();
+        object reuslt();
     }
 }
