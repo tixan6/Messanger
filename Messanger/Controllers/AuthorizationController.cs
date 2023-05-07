@@ -1,6 +1,8 @@
 ﻿using Messanger.Models;
+using Messanger.Scripts.ConnectionToDataBase;
+using Messanger.Scripts.HashPasswd;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Npgsql;
 
 namespace Messanger.Controllers
 {
@@ -25,30 +27,49 @@ namespace Messanger.Controllers
                 ModelState.AddModelError("password", "Введите пароль");
                 
             }
-
-            //Проверка пользователя
-
-            //Если нет пользователя в БД
-            //ModelState.AddModelError("", "Пароль или логин неверный");
+            //TODO: Сохранение Cookie - loginInfo.rememberData в куки
 
             if (ModelState.IsValid)
             {
-                return View();
+                string hashLoginPass = Hash.HashPassword(loginInfo.password);
+                Connect connect = new Connect($"SELECT \"Users\".\"password\" FROM \"Users\" WHERE \"Users\".\"email\" = '{loginInfo.email.Trim()}'");
+                connect.ConnectionOpen();
+                NpgsqlDataReader items = connect.reuslt();
+                connect.ConnectionClose();
+                string pass = string.Empty;
+                if (items.HasRows)
+                {
+                    while (items.Read())
+                    {
+                        pass = items.GetValue(0).ToString();
+                    }
+                   
+
+                    if (Hash.VerifyHashedPassword(pass, loginInfo.password))
+                    {
+                        return View();
+                    }
+                    else 
+                    {
+                        ModelState.AddModelError("", "Пароль или логин неверный");
+                        return View("Index");
+                    }              
+                }
+                else 
+                {
+                    ModelState.AddModelError("", "Пароль или логин неверный");
+                    return View("Index");
+                }              
             }
             else
             {
                 return View("Index");
-            }
-            
-
+            }        
         }
-
         public IActionResult ResetPassword() 
         {
             return View();
         }
-
-
 
         [HttpPost]
         public IActionResult ResetPassword(ResetPasstEmail resetPasstEmail)

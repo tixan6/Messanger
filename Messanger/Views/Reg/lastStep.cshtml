@@ -30,17 +30,8 @@
 
                         <h2>
                             @{
-                            //Отправить данные на почту
-
-
                                 if (dataStepStatic.code == null)
                                     dataStepStatic.code = RandomCodeConfirm.codeConfirm();
-
-                              
-                      
-                                
-
-                                //string reg = @"(\S{1})(\S+?)(\S{1})(?=[@])";
                                 string email = ViewBag.email;
                                 char[] emailChar;
                                 emailChar = dataStepStatic.email.ToCharArray();
@@ -53,8 +44,7 @@
                                 }
                                 string result = new string(emailChar);
                                 <span>@result</span>
-                            }
-                            
+                            }                    
                         </h2>
 
 
