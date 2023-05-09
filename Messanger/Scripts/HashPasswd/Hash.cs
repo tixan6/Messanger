@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
 using System.Security.Cryptography;
-using Xunit;
 
 namespace Messanger.Scripts.HashPasswd
 {
@@ -25,6 +24,7 @@ namespace Messanger.Scripts.HashPasswd
             Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
             return Convert.ToBase64String(dst);
         }
+
         public static bool VerifyHashedPassword(string hashedPassword, string password)
         {
             byte[] buffer4;

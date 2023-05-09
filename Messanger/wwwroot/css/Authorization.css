@@ -222,3 +222,31 @@ ul {
     transition: all 0.5s ease;
     opacity: 0;
 }
+
+
+.reg-panelInFooter-Login a {
+    margin-top: 110px;
+    transition: 0.2s;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+    .reg-panelInFooter-Login a:hover {
+        transition: 0.2s;
+        font-size: 13px;
+    }
+.inputCode {
+    text-align-last: center;
+    margin-top: 15px;
+}
+
+    .inputCode .text-box {
+        width: 150px;
+        text-align: center;
+        text-indent: 0;
+    }

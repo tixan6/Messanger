@@ -1,6 +1,8 @@
 ﻿using Messanger.Models;
+using Messanger.Scripts;
 using Messanger.Scripts.ConnectionToDataBase;
 using Messanger.Scripts.HashPasswd;
+using Messanger.Scripts.SMTPSendingToMail;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 
@@ -79,26 +81,29 @@ namespace Messanger.Controllers
         [HttpPost]
         public IActionResult ResetPassword(ResetPasstEmail resetPasstEmail)
         {
-            //Запрос к БД, если есть то перейти к новому этапу - если нет, то выдать ошибку
+            Connect connect = new Connect($"SELECT * FROM \"Users\" WHERE email = '{resetPasstEmail.EmailForReset}'");
+            connect.ConnectionOpen();
+            object data = connect.reuslt();
 
             if (ModelState.IsValid)
             {
-                //Если запрос к БД нашел почту
-                //if (данные есть)
-                //{
-                    return View("//Новая СТР");
-                //}
-                //else 
-                //{
-                    ModelState.AddModelError("", "Пользователя с такой почтой не существует");
-                //}
-                
+                if (data is NpgsqlDataReader)
+                {
+                    
+                    ModelState.AddModelError("EmailForReset", "Пользователь с таким адресом зарегистрирован");
+                    connect.ConnectionClose();
+                    return View("ResetPasswordTwo");
+                }
+                else
+                {
+                    ModelState.AddModelError("EmailForReset", "Пользоватя с таким адресом не существует");
+                    return View();
+                }           
             }
             else
             {
                 
                 return View();
-                //Вернуть туже страницу с ошибкой
             }
             
         }
