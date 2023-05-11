@@ -17,7 +17,7 @@ namespace Messanger.Models
         public string Password { get; set; }
 
 
-        [Required(ErrorMessage = "Подтвердите пароль ")]
+        [Required(ErrorMessage = "Подтвердите пароль")]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
         public string RepPassword { get; set; }

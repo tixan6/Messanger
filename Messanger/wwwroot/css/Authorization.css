@@ -136,6 +136,7 @@ h3 {
         font-size: 13px;
     }
 .reg-panelInFooter {
+    text-align: center;
     position: absolute;
     bottom: 20px;
     left: 32%;
@@ -250,3 +251,40 @@ ul {
         text-align: center;
         text-indent: 0;
     }
+.text-info p {
+    color: #C5DEEF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    width: 240px;
+}
+
+.text-info {
+    text-align: -webkit-center;
+    margin-top: 30px;
+}
+.btnCode {
+    text-align: -webkit-center;
+}
+.showingPass {
+    text-align: center;
+}
+.showingPass a { 
+    margin-top: 30px;
+    text-decoration: none;
+    transition: 0.2s;
+    color: #C5DEEF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    align-self: center;
+}
+
+    .showingPass a:hover {
+        transition: 0.2s;
+        color: #fff;
+    }
+
+#resetCode {
+    margin: 10px;
+}

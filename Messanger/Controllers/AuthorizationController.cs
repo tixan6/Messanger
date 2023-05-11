@@ -89,9 +89,11 @@ namespace Messanger.Controllers
             {
                 if (data is NpgsqlDataReader)
                 {
-                    
-                    ModelState.AddModelError("EmailForReset", "Пользователь с таким адресом зарегистрирован");
+                    dataStepStatic.email = resetPasstEmail.EmailForReset;
                     connect.ConnectionClose();
+                    dataStepStatic.code = RandomCodeConfirm.codeConfirm();
+                    Sending sending = new Sending(resetPasstEmail.EmailForReset, dataStepStatic.code);
+                    sending.SendMessage();
                     return View("ResetPasswordTwo");
                 }
                 else
@@ -103,6 +105,53 @@ namespace Messanger.Controllers
             else
             {
                 
+                return View();
+            }
+            
+        }
+
+        public IActionResult ResetPasswordTwo(ConfirmEmail confirmEmail) 
+        {
+            if (ModelState.IsValid)
+            {
+                if (dataStepStatic.code == confirmEmail.codeConfirmEmail)
+                {
+                    //Новое окно
+                    return View("ResetPasswordThree");
+                   
+                }
+                else
+                {
+                    //Ошибка ввода
+                    ModelState.AddModelError("", "Код неверный");
+                    return View();
+                }
+            }
+            else
+            {
+                //Ошибка ввода
+                return View();
+            }
+        }
+
+        public IActionResult ResetCode()
+        {
+            ViewBag.email = dataStepStatic.email;
+            dataStepStatic.code = RandomCodeConfirm.codeConfirm();
+            Sending sending = new Sending(dataStepStatic.email, dataStepStatic.code);
+            sending.SendMessage();
+            ViewBag.messageResetCode = "Код выслан повторно";
+            return View("ResetPasswordTwo");
+        }
+
+        public IActionResult ResetPasswordThree(ConfirmPasswords confirm) 
+        {
+            if (ModelState.IsValid)
+            {
+                return View("index");
+            }
+            else 
+            {
                 return View();
             }
             
