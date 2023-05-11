@@ -96,9 +96,8 @@ namespace Messanger.Controllers
                         Connect connect = new Connect($"INSERT INTO \"Users\" (\"email\", \"password\", \"name\", \"surname\", \"patronymic\", \"age\", \"gender\") VALUES\r\n('{dataStepStatic.email}', '{hashPass}', '{dataStepStatic.name}', '{dataStepStatic.surname}', '{dataStepStatic.patronymic}', {dataStepStatic.age}, '{dataStepStatic.gender}')"); ;
                         connect.ConnectionOpen();
                         object data = connect.reuslt();
-                        //NpgsqlDataReader dataReader = (NpgsqlDataReader)data;
                         connect.ConnectionClose();
-                        return View("loginData");
+                        return Redirect("/Authorization/index");
                     }
                     else
                     {
@@ -107,14 +106,12 @@ namespace Messanger.Controllers
                 }
                 else
                 {
-                    //Ошибка ввода
                     ModelState.AddModelError("", "Код неверный");
                     return View("lastStep");
                 }            
             }
             else
             {              
-                //Ошибка ввода
                 return View("lastStep");
             }
         }
