@@ -11,13 +11,14 @@
         <div class="header-avatar">
 
             <div class="circle-photo-avatar">
-                @if (ViewBag.Photo != null)
+                @if (dataStepStatic.avatar != null)
                 {
-                    <img src="data:image/jpeg;base64,@(ViewBag.Photo)" />
+                    <img src="data:image/jpeg;base64,@(System.Text.Encoding.UTF8.GetString(dataStepStatic.avatar))" />
+
                 }
                 else
                 {
-                    <img src="~/img/icons/test.png" />
+                    <img src="~/img/EmptyAvatar.png" />
                 }
 
             </div>
@@ -38,8 +39,12 @@
         <div class="btn-change">
             <div>
                 <form class="inputPhoto-avatar" method="post" action="/Authorization/ChangePhoto" enctype="multipart/form-data">
-                    <input type="file" class="form-control" name="image" />
-                    <button type="submit">Сохранить</button>
+                    <label class="input-file">
+                        <input type="file" class="form-control" name="image">
+                        <span class="input-file-btn">Выберите фото</span>
+
+                    </label>
+                    <button type="submit" class="btn">Сохранить</button>
                 </form>
             </div>
         </div>

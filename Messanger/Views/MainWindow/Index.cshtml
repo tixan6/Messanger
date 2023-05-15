@@ -1,10 +1,12 @@
 ﻿@using Messanger.Controllers;
-
+@using Messanger.Scripts;
+@using Npgsql;
 @{
-    ViewData["Title"] = "ChangePatronymic";
+    ViewData["Title"] = "lognData";
     Layout = "_LayoutUserAccount";
+
 }
-@model Messanger.Models.ChangesSettings.ChangesPatronymic;
+
 @section CenterScreen
     {
     <div class="RenderSection-center-header">
@@ -39,12 +41,14 @@
         <div class="btn-change">
             <div>
                 <form class="inputPhoto-avatar" method="post" action="/Authorization/ChangePhoto" enctype="multipart/form-data">
+
                     <label class="input-file">
                         <input type="file" class="form-control" name="image">
                         <span class="input-file-btn">Выберите фото</span>
 
                     </label>
                     <button type="submit" class="btn">Сохранить</button>
+
                 </form>
             </div>
         </div>
@@ -54,37 +58,10 @@
 
 @section leftScreen
     {
-    <div class="title-changes">
-        <h1>Смена отчества</h1>
+    <div class="default-title">
+        <h2>Выберите пункт изменений</h2>
     </div>
 
-    <div class="input-change-surname" id="input-for-changes">
-        @using (Html.BeginForm("ChangePatronymic", "Settings", FormMethod.Post))
-        {
-            <div class="inputs-error">
-                @Html.ValidationMessageFor(x => x._patronymic)
-                @Html.EditorFor(x => x._patronymic, new {htmlAttributes = new {placeholder = "Отчетсво"}})
-            </div>
-
-            <input type="submit" value="Сохранить" class="SaveChanges-button">
-
-
-        }
-    </div>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if (ViewBag.patronymic != null)
-    {
-        <script>
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Вы успешно изменили отчетсво',
-                showConfirmButton: false,
-                timer: 2000
-            })
-        </script>
-        ViewBag.patronymic = null;
-    }
 }
+
+

@@ -1,8 +1,12 @@
-﻿namespace Messanger.Scripts
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+
+namespace Messanger.Scripts
 {
     public static class BinaryAvatar
     {
-        public static byte[] binaryPhotoEncoding(IFormFile img) 
+        public static byte[] binaryPhotoEncoding(IFormFile img)
         {
             byte[] imageData = null;
             using (var binaryReader = new BinaryReader(img.OpenReadStream()))
@@ -11,6 +15,9 @@
             }
             return imageData;
         }
+
+
+
 
 
         public static string binaryPhotoDecoding(byte[] img)

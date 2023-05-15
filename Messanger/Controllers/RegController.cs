@@ -20,6 +20,7 @@ namespace Messanger.Controllers
         public static string code { get; set; }      
         public static string id { get; set; }        
         public static string patr { get; set; }        
+        public static byte[] avatar { get; set; }        
     }
         
     public class RegController : Controller

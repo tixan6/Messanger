@@ -48,6 +48,7 @@ body {
 }
 
 .place-circle-photo {
+    object-fit: cover;
     width: 63px;
     height: 63px;
     background: red;
@@ -62,17 +63,25 @@ body {
 }
 .itemsToolsLeft {
     background: #2470A6;
-    height: 370px;
-    width: 230px;
+    height: 220px;
+    width: 190px;
     border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 #message-box-id a {
+    transition: 0.3s all ease;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     font-size: 20px;
     font-weight: 400;
     text-decoration: none;
 }
+    #message-box-id a:hover {
+        transition: 0.3s all ease;
+        font-size: 21px;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
 #message-box-id {
     display: flex;
     align-items: center;
@@ -81,6 +90,8 @@ body {
 
 #message-box-id img {
     padding-left: 10px;
+    width: 20px;
+    height: 20px;
 }
 .RenderSection-center {
     border: solid 1px #8E8E8E;
@@ -100,7 +111,7 @@ body {
 .header-avatar {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 17px;
 }
 
 .data-about-me h2 {
@@ -112,7 +123,7 @@ body {
 .RenderSection-center-header {
     border: solid 1px #8E8E8E;
     width: 500px;
-    height: 190px;
+    height: 211px;
     border-radius: 10px;
 }
 .data-about-me {
@@ -120,7 +131,7 @@ body {
 }
 .btn-change {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     
 }
 .btn-change a {
@@ -155,10 +166,10 @@ body {
     display: block;
 }
 
-    .itm-horizontal a:hover {
-        transition: 0.3s all ease;
-        font-size: 13px;
-    }
+.itm-horizontal a:hover {
+    transition: 0.3s all ease;
+    font-size: 13px;
+}
 
 .button-changes h3 {
     color: #383838;
@@ -273,3 +284,126 @@ ul {
     color: #ff5448;
     font-size: 12px;
 }
+.default-title {
+    text-align: center;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #343434;
+    font-size: 12px;
+}
+
+
+/*Для choose file*/
+.input-file {
+    position: relative;
+    display: inline-block;
+}
+
+.input-file-btn {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    font-size: 14px;
+    vertical-align: middle;
+    color: rgb(255 255 255);
+    text-align: center;
+    border-radius: 4px;
+    background-color: #2470a6;
+    line-height: 22px;
+    height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+    transition: background-color 0.2s;
+}
+
+.input-file-text {
+    padding: 0 10px;
+    line-height: 40px;
+    display: inline-block;
+}
+
+.input-file input[type=file] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+    .input-file input[type=file]:focus + .input-file-btn {
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+
+.input-file:hover .input-file-btn {
+    background-color: #499efe;
+    /*#59be6e*/
+}
+
+.input-file:active .input-file-btn {
+    background-color: #2E703A;
+}
+
+
+.input-file input[type=file]:disabled + .input-file-btn {
+    background-color: #eee;
+}
+
+.btn {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 24px;
+    margin: 0 15px 15px 0;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    height: 37px;
+    line-height: 37px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: normal;
+    text-decoration: none;
+    color: #2470a6;
+    background-color: #fff;
+    cursor: pointer;
+    user-select: none;
+    appearance: none;
+    touch-action: manipulation;
+    transition: box-shadow .18s ease-out,background .18s ease-out,color .18s ease-out;
+}
+
+    .btn:focus-visible {
+        box-shadow: 0 0 0 3px lightskyblue;
+    }
+
+    .btn:hover {
+        box-shadow: 0 1px 1px 0 #cfcfcf, 0 2px 5px 0 #cfcfcf;
+    }
+
+    .btn:active {
+        background-color: #efefef !important;
+    }
+
+    .btn:disabled {
+        background-color: #eee;
+        color: #444;
+        pointer-events: none;
+    }
+
+.linkToSettings a {
+    transition: 0.3s all ease;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+}
+    .linkToSettings a:hover {
+        font-size: 19px;
+    }

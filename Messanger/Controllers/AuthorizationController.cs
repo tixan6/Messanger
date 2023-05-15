@@ -52,7 +52,7 @@ namespace Messanger.Controllers
                         connect.ConnectionClose();
                         if (Hash.VerifyHashedPassword(pass, loginInfo.password))
                         {
-                            Connect connectTwo = new Connect($"SELECT age, email, gender, \"Users\".id, \"name\", surname, patronymic FROM \"Users\" WHERE \"Users\".\"email\" = '{loginInfo.email.Trim()}'");
+                            Connect connectTwo = new Connect($"SELECT age, email, gender, \"Users\".id, \"name\", surname, patronymic, avatar FROM \"Users\" WHERE \"Users\".\"email\" = '{loginInfo.email.Trim()}'");
                             connectTwo.ConnectionOpen();
                                 object itemsTwo = connectTwo.reuslt();
                            
@@ -66,6 +66,17 @@ namespace Messanger.Controllers
                                 dataStepStatic.name = itemsReaderTwo.GetValue(4).ToString();
                                 dataStepStatic.surname = itemsReaderTwo.GetValue(5).ToString();
                                 dataStepStatic.patr = itemsReaderTwo.GetValue(6).ToString();
+
+                                    try
+                                    {
+                                        dataStepStatic.avatar = (byte[])itemsReaderTwo.GetValue(7);
+                                    }
+                                    catch (Exception)
+                                    {
+
+                                        break;
+                                    }
+                                
                 
                         }
                             
@@ -191,8 +202,15 @@ namespace Messanger.Controllers
         [HttpPost]
         public IActionResult ChangePhoto(IFormFile image)
         {
-            byte[] s = BinaryAvatar.binaryPhotoEncoding(image);
-            ViewBag.Photo = BinaryAvatar.binaryPhotoDecoding(s);
+            
+            byte[] photo = BinaryAvatar.binaryPhotoEncoding(image);
+            string photoUTF = BinaryAvatar.binaryPhotoDecoding(photo);
+            Connect connect = new Connect($"UPDATE \"Users\" SET \"avatar\" = '{photoUTF}'");
+            connect.ConnectionOpen();
+            connect.reuslt();
+            connect.ConnectionClose();
+            ViewBag.changePhoto = true;
+
             return View("loginData");
         }
 

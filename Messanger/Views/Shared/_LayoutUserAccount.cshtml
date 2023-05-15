@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" type="text/css" href="~/css/MainPage.css"/>
-
 </head>
 <body>
     <header>
@@ -19,8 +18,18 @@
                 </div>
 
                 <div class="information-abt-self">
-                    <h3>@dataStepStatic.name</h3>
-                    <img class="place-circle-photo" src="~/img/icons/test.png" />
+                    <div class="linkToSettings">
+                        @Html.ActionLink($"{dataStepStatic.name}","index", "MainWindow")
+                    </div>
+                    
+                    @if (dataStepStatic.avatar != null)
+                    {
+                        <img class="place-circle-photo" src="data:image/jpeg;base64,@(System.Text.Encoding.UTF8.GetString(dataStepStatic.avatar))" />
+                    }
+                    else
+                    {
+                        <img src="~/img/EmptyAvatar.png"/>
+                    }
                 </div>
             </div>
         </div>    
@@ -33,24 +42,19 @@
                 <div class="itemsToolsLeft">
                     <div class="Button-tools">
                         <div class="message-box" id="message-box-id">
-                            @Html.ActionLink("Сообщение", "reg", "ere")
+                            @Html.ActionLink("Общение", "reg", "ere")
                             <img src="~/img/icons/iconMessage.png" />
                         </div>
                         <div class="SearchFriends-box" id="message-box-id">
-                            @Html.ActionLink("Поиск друзей", "reg", "ere")
-                            <img src="~/img/icons/iconMessage.png" />
-                        </div>
-                        <div class="Settings-box" id="message-box-id">
-                            @Html.ActionLink("Настройки", "reg", "ere")
-                            <img src="~/img/icons/iconMessage.png" />
+                            @Html.ActionLink("Друзья", "reg", "ere")
+                            <img src="~/img/icons/Male-Fame.png" />
                         </div>
                         <div class="Group-box" id="message-box-id">
-                            @Html.ActionLink("Группы", "reg", "ere")
-                            <img src="~/img/icons/iconMessage.png" />
+                            @Html.ActionLink("Вести знакомых", "reg", "ere")
+                            <img src="~/img/icons/Mehano.png" />
                         </div>
                         <div class="Exit-box" id="message-box-id">
                             @Html.ActionLink("Выход", "reg", "ere")
-                            <img src="~/img/icons/iconMessage.png" />
                         </div>
                         
                     </div>
@@ -89,20 +93,13 @@
                         <div class="place-inputs">
                             @RenderSection("leftScreen")
                         </div>
-                    </div>
-
-                    
-                    
+                    </div>   
                 </div>
             </div>       
         </div>
     </section>
 
     
-
-
-
-
 
 </body>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
