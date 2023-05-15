@@ -9,13 +9,14 @@
   <ItemGroup>
     <PackageReference Include="jQuery" Version="3.6.4" />
     <PackageReference Include="jQuery.Ajax.Unobtrusive" Version="2.0.20710" />
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
     <PackageReference Include="Npgsql" Version="7.0.4" />
     <PackageReference Include="xunit.extensibility.core" Version="2.4.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\img\icons\" />
     <Folder Include="wwwroot\js\Popup\" />
   </ItemGroup>
 

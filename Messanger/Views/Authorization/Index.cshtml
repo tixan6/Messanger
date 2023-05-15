@@ -22,9 +22,7 @@
                         <div class="GeneralError">
                             @Html.ValidationSummary(true)
                             
-                        </div>
-
-                       
+                        </div>  
 
                         <div class="autorisation-inputs">
 
@@ -78,6 +76,18 @@
                     position: 'top-end',
                     icon: 'success',
                     title: 'Вы успешно зарегистрировались',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            </script>
+        }
+        @if (ViewBag.change == true)
+        {
+            <script>
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Вы успешно изменили пароль',
                     showConfirmButton: false,
                     timer: 2000
                 })

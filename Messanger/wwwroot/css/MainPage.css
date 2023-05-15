@@ -1,0 +1,275 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Montserrat:wght@100;200;500;700&display=swap');
+header {
+    background: #2470A6;
+    min-height: 40px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.container {
+    width: 1247px;
+    margin: 0 auto;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.logotype {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+.logoTitle {
+    color: #fff;
+}
+.imgLogoIcon {
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+}
+.header-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.information-abt-self {
+    display: flex;
+    align-self: center;
+    align-items: center;
+}
+
+
+.information-abt-self h3 {
+    margin-right: 10px;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.place-circle-photo {
+    width: 63px;
+    height: 63px;
+    background: red;
+    border-radius: 40px;
+    border: solid 1px #fff;
+    margin: 10px;
+}
+.position-items {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.itemsToolsLeft {
+    background: #2470A6;
+    height: 370px;
+    width: 230px;
+    border-radius: 10px;
+}
+#message-box-id a {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    text-decoration: none;
+}
+#message-box-id {
+    display: flex;
+    align-items: center;
+    margin: 15px;
+}
+
+#message-box-id img {
+    padding-left: 10px;
+}
+.RenderSection-center {
+    border: solid 1px #8E8E8E;
+    border-radius: 10px;
+}
+.circle-photo-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 100px;
+    border: solid 1px #8E8E8E;
+    object-fit: cover;
+}
+.circle-photo-avatar {
+    text-align: -webkit-center;
+}
+
+.header-avatar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.data-about-me h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: #383838;
+    font-size: 18px;
+}
+.RenderSection-center-header {
+    border: solid 1px #8E8E8E;
+    width: 500px;
+    height: 190px;
+    border-radius: 10px;
+}
+.data-about-me {
+    margin-left: 20px;
+}
+.btn-change {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.btn-change a {
+    padding-right: 10px;
+}
+.inputPhoto-avatar {
+    margin-left: 5px;
+}
+.Text-lable-settings {
+    display: flex;
+    justify-content: center;
+}
+.Text-lable-settings h1 {
+    color: #383838;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+.itm-horizontal {
+    display: flex;
+    justify-content: center;
+}
+
+.itm-horizontal a {
+    transition: 0.3s all ease;
+    text-decoration: none;
+    color: #383838;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    margin: 7px;
+    display: block;
+}
+
+    .itm-horizontal a:hover {
+        transition: 0.3s all ease;
+        font-size: 13px;
+    }
+
+.button-changes h3 {
+    color: #383838;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+}
+#marginFor-centerPlace {
+    margin-top: 20px;
+}
+#h-w {
+    height: 80%;
+}
+.title-changes {
+    text-align: -webkit-center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+}
+.input-change-name .inputs-error input {
+    width: 128px;
+    height: 30px;
+    border: solid 1px #DADADA;
+    background: #E1E1E1;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    color: #000;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+.input-change-surname .inputs-error input {
+    width: 190px;
+    height: 30px;
+    border: solid 1px #DADADA;
+    background: #E1E1E1;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    color: #000;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+.input-change-email .inputs-error input {
+    width: 190px;
+    height: 30px;
+    border: solid 1px #DADADA;
+    background: #E1E1E1;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    color: #000;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+#twoBox-inputs {
+    margin-top: 20px;
+}
+
+.SaveChanges-button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    background: #5BC4FF;
+    color: #343434;
+    width: 110px;
+    height: 34px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+#input-for-changes {
+    margin: 10px;
+}
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+#errorMessageCode .field-validation-error {
+    margin-left: 43px;
+}
+
+.input-validation-error {
+    border: 2px solid #FF685E;
+}
+
+.validation-summary-errors {
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.field-validation-error {
+    transition: all 0.5s ease;
+    opacity: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #FF685E;
+    font-size: 10px;
+    margin-top: -15px;
+    position: fixed;
+}
+
+ul {
+    text-align-last: center;
+    list-style: none;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #ff5448;
+    font-size: 12px;
+}

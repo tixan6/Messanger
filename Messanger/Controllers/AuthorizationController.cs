@@ -52,7 +52,25 @@ namespace Messanger.Controllers
                         connect.ConnectionClose();
                         if (Hash.VerifyHashedPassword(pass, loginInfo.password))
                         {
-                            return View();
+                            Connect connectTwo = new Connect($"SELECT age, email, gender, \"Users\".id, \"name\", surname, patronymic FROM \"Users\" WHERE \"Users\".\"email\" = '{loginInfo.email.Trim()}'");
+                            connectTwo.ConnectionOpen();
+                                object itemsTwo = connectTwo.reuslt();
+                           
+                            NpgsqlDataReader itemsReaderTwo = (NpgsqlDataReader)itemsTwo;
+                            while (itemsReaderTwo.Read())
+                            {
+                                dataStepStatic.id = itemsReaderTwo.GetValue(0).ToString();
+                                dataStepStatic.email = itemsReaderTwo.GetValue(1).ToString();
+                                dataStepStatic.gender = itemsReaderTwo.GetValue(2).ToString();
+                                dataStepStatic.age = Convert.ToUInt32(itemsReaderTwo.GetValue(3));
+                                dataStepStatic.name = itemsReaderTwo.GetValue(4).ToString();
+                                dataStepStatic.surname = itemsReaderTwo.GetValue(5).ToString();
+                                dataStepStatic.patr = itemsReaderTwo.GetValue(6).ToString();
+                
+                        }
+                            
+                            connectTwo.ConnectionClose();
+                        return View();                  
                         }
                         else
                         {
@@ -73,6 +91,8 @@ namespace Messanger.Controllers
             }     
             
         }
+
+       
         public IActionResult ResetPassword() 
         {
             return View();
@@ -103,8 +123,7 @@ namespace Messanger.Controllers
                 }           
             }
             else
-            {
-                
+            {               
                 return View();
             }
             
@@ -116,20 +135,17 @@ namespace Messanger.Controllers
             {
                 if (dataStepStatic.code == confirmEmail.codeConfirmEmail)
                 {
-                    //Новое окно
                     return View("ResetPasswordThree");
                    
                 }
                 else
                 {
-                    //Ошибка ввода
                     ModelState.AddModelError("", "Код неверный");
                     return View();
                 }
             }
             else
             {
-                //Ошибка ввода
                 return View();
             }
         }
@@ -148,7 +164,22 @@ namespace Messanger.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View("index");
+                try
+                {
+                    string query = $"UPDATE \"Users\" SET \"password\" = '{Hash.HashPassword(confirm.FirstPass)}' WHERE email = '{dataStepStatic.email}'";
+                    Connect connect = new Connect(query);
+                    connect.ConnectionOpen();
+                    connect.reuslt();
+                    connect.ConnectionClose();
+                    ViewBag.change = true;
+                    return View("index");
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception();
+                }
+                
             }
             else 
             {
@@ -156,5 +187,14 @@ namespace Messanger.Controllers
             }
             
         }
+
+        [HttpPost]
+        public IActionResult ChangePhoto(IFormFile image)
+        {
+            byte[] s = BinaryAvatar.binaryPhotoEncoding(image);
+            ViewBag.Photo = BinaryAvatar.binaryPhotoDecoding(s);
+            return View("loginData");
+        }
+
     }
 }

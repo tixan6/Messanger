@@ -1,15 +1,110 @@
-﻿<!DOCTYPE html>
+﻿@using Messanger.Controllers;
+
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/css/MainPage.css"/>
+
 </head>
 <body>
-    <div>
-        @RenderBody()
-    </div>
+    <header>
+        <div class="container">
+            <div class="header-div">
+                <div class="logotype">
+                    <h1 class="logoTitle">Namla</h1>
+                    <img class="imgLogoIcon" src="~/img/Logo-icon.png"/>
+                </div>
+
+                <div class="information-abt-self">
+                    <h3>@dataStepStatic.name</h3>
+                    <img class="place-circle-photo" src="~/img/icons/test.png" />
+                </div>
+            </div>
+        </div>    
+    </header>
+
+
+    <section>
+        <div class="container">
+            <div class="position-items">
+                <div class="itemsToolsLeft">
+                    <div class="Button-tools">
+                        <div class="message-box" id="message-box-id">
+                            @Html.ActionLink("Сообщение", "reg", "ere")
+                            <img src="~/img/icons/iconMessage.png" />
+                        </div>
+                        <div class="SearchFriends-box" id="message-box-id">
+                            @Html.ActionLink("Поиск друзей", "reg", "ere")
+                            <img src="~/img/icons/iconMessage.png" />
+                        </div>
+                        <div class="Settings-box" id="message-box-id">
+                            @Html.ActionLink("Настройки", "reg", "ere")
+                            <img src="~/img/icons/iconMessage.png" />
+                        </div>
+                        <div class="Group-box" id="message-box-id">
+                            @Html.ActionLink("Группы", "reg", "ere")
+                            <img src="~/img/icons/iconMessage.png" />
+                        </div>
+                        <div class="Exit-box" id="message-box-id">
+                            @Html.ActionLink("Выход", "reg", "ere")
+                            <img src="~/img/icons/iconMessage.png" />
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="CenterSharedLayout">             
+                    @RenderSection("CenterScreen")              
+                </div>
+
+                <div class="itemsToolsRight" style="width: 300px; height: 200px;">
+
+                    <div class="RenderSection-center" id="h-w">
+                        <div class="settings-left">
+                            <div class="button-changes">
+                                <h3>Настройки</h3>
+                                <div class="itm-horizontal">
+                                    @Html.ActionLink("Сменить имя", "ChangeName", "Settings")
+                                    @Html.ActionLink("Сменить фамилию", "ChangeSurname", "Settings")
+                                </div>
+
+                                <div class="itm-horizontal">
+                                    @Html.ActionLink("Сменить отчетство", "ChangePatronymic", "Settings")
+                                </div>
+
+                                <div class="itm-horizontal">
+                                    @Html.ActionLink("Сменить пароль", "ChangePassword", "Settings")
+                                    @Html.ActionLink("Сменить почту", "ChangeEmail", "Settings")
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="RenderSection-center" id="marginFor-centerPlace">
+                        <div class="place-inputs">
+                            @RenderSection("leftScreen")
+                        </div>
+                    </div>
+
+                    
+                    
+                </div>
+            </div>       
+        </div>
+    </section>
+
+    
+
+
+
+
+
 </body>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/js/smoothShowing.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/smoothShowing.js"></script>
 </html>

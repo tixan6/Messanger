@@ -1,13 +1,12 @@
 ﻿@using Messanger.Controllers;
-@using Npgsql;
-@{
-    ViewData["Title"] = "loginData";
-    Layout = "_LayoutUserAccount";
-     
-}
 
-@section CenterScreen 
-{
+@{
+    ViewData["Title"] = "ChangeName";
+    Layout = "_LayoutUserAccount";
+}
+@model Messanger.Models.ChangesSettings.ChangesName;
+@section CenterScreen
+    {
     <div class="RenderSection-center-header">
         <div class="header-avatar">
 
@@ -34,23 +33,56 @@
                 </div>
 
             </div>
-        </div>   
+        </div>
 
-        <div class="btn-change">        
+        <div class="btn-change">
             <div>
                 <form class="inputPhoto-avatar" method="post" action="/Authorization/ChangePhoto" enctype="multipart/form-data">
                     <input type="file" class="form-control" name="image" />
                     <button type="submit">Сохранить</button>
                 </form>
             </div>
-        </div>    
+        </div>
     </div>
 
 }
 
 @section leftScreen
 {
-    <h2>Тут поля настроек</h2>
+    <div class="title-changes">
+        <h1>Смена имени</h1>
+    </div>
+    
+    <div class="input-change-name" id="input-for-changes">
+        @using (Html.BeginForm("ChangeName", "Settings", FormMethod.Post))
+        {
+            <div class="inputs-error">
+                @Html.ValidationMessageFor(x => x._name)
+                @Html.EditorFor(x => x._name, new {htmlAttributes = new {placeholder = "Имя"}})
+            </div>
+            
+            <input type="submit" value="Сохранить" class="SaveChanges-button">
+            
+            
+        }
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (ViewBag.nameChange != null)
+    {
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Вы успешно изменили имя',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+        ViewBag.nameChange = null;
+    }
 }
+
 
 
