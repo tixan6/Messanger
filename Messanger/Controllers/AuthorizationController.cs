@@ -59,23 +59,23 @@ namespace Messanger.Controllers
                             NpgsqlDataReader itemsReaderTwo = (NpgsqlDataReader)itemsTwo;
                             while (itemsReaderTwo.Read())
                             {
-                                dataStepStatic.id = itemsReaderTwo.GetValue(0).ToString();
+                                dataStepStatic.age = Convert.ToUInt32(itemsReaderTwo.GetValue(0));
                                 dataStepStatic.email = itemsReaderTwo.GetValue(1).ToString();
                                 dataStepStatic.gender = itemsReaderTwo.GetValue(2).ToString();
-                                dataStepStatic.age = Convert.ToUInt32(itemsReaderTwo.GetValue(3));
+                                dataStepStatic.id = Convert.ToInt32(itemsReaderTwo.GetValue(3));
                                 dataStepStatic.name = itemsReaderTwo.GetValue(4).ToString();
                                 dataStepStatic.surname = itemsReaderTwo.GetValue(5).ToString();
                                 dataStepStatic.patr = itemsReaderTwo.GetValue(6).ToString();
 
-                                    try
-                                    {
-                                        dataStepStatic.avatar = (byte[])itemsReaderTwo.GetValue(7);
-                                    }
-                                    catch (Exception)
-                                    {
+                                try
+                                {
+                                    dataStepStatic.avatar = (byte[])itemsReaderTwo.GetValue(7);
+                                }
+                                catch (Exception)
+                                {
 
-                                        break;
-                                    }
+                                    break;
+                                }
                                 
                 
                             }

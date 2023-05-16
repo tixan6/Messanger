@@ -1,4 +1,5 @@
-﻿using Messanger.Scripts.ConnectionToDataBase;
+﻿using Messanger.Models;
+using Messanger.Scripts.ConnectionToDataBase;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using System.Data;
@@ -16,15 +17,11 @@ namespace Messanger.Controllers
 
 
 
-
-
-        //Друзья
         public IActionResult Firends()
         {
-            //Тут сделать запрос к БД всех пользователей...
             List<List<object>> list = new List<List<object>>();
             List<object> mas;
-            Connect Connect = new Connect($"SELECT  \"Users\".id, \"name\", surname, patronymic, avatar FROM \"Users\";");
+            Connect Connect = new Connect($"SELECT \"Users\".id, \"name\", surname, patronymic, avatar FROM \"Users\" WHERE \"id\" != {Convert.ToInt32(dataStepStatic.id)};");
             Connect.ConnectionOpen();
             object all = Connect.reuslt();
 
@@ -39,16 +36,8 @@ namespace Messanger.Controllers
                 }
                 list.Add(mas); 
             }
-            Connect.ConnectionClose();
+            Connect.ConnectionClose();  
             return View(list);
         }
-
-        [HttpPost]
-        public IActionResult Firends(StringDigitSubstitute sd)
-        {
-            return View();
-        }
-
-
     }
 }
