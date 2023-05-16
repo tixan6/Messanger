@@ -78,7 +78,7 @@ namespace Messanger.Controllers
                                     }
                                 
                 
-                        }
+                            }
                             
                             connectTwo.ConnectionClose();
                         return View();                  

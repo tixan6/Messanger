@@ -1,0 +1,54 @@
+﻿@using Messanger.Controllers;
+
+@{
+    ViewData["Title"] = "Friends";
+    Layout = "_LayoutUserAccount";
+}
+@model List<List<object>>
+@section CenterScreen
+{
+    <div class="RenderSection-center">
+
+
+        @foreach (var items in Model)
+        {
+            <div class="block-all-off-people">
+                <div class="center-block-friends">
+
+                    <div class="block-avatar">
+                        @if (items[4] is byte[])
+                        {
+                            <img class="circle-photo-avatar-add" src="data:image/jpeg;base64,@(System.Text.Encoding.UTF8.GetString((byte[])items[4]))" />
+                        }
+                        else
+                        {
+                            <img class="circle-photo-avatar-add" src="~/img/EmptyAvatar.png" />
+                        }
+                    </div>
+
+                    <div class="block-name">
+                        @items[1].ToString() @items[2].ToString() @items[3].ToString() 
+                    </div>
+                    <div class="block-btn-profile" style="margin-left: auto;">
+                        @Html.ActionLink("Профиль", "", "")
+                    </div>
+
+                 </div>
+             </div>  
+        }
+    </div>
+
+}
+
+
+@section leftScreen
+{
+
+    <div class="title-changes">
+        <h1>Поиск</h1>
+    </div>  
+
+}
+
+
+
