@@ -11,7 +11,8 @@
 
         @foreach (var items in Model)
         {
-            <div class="block-all-off-people">
+            
+            <div class="block-all-off-people" id="@items[0]">
                 <div class="center-block-friends">
 
                     <div class="block-avatar">
@@ -28,14 +29,52 @@
                     <div class="block-name">
                         @items[1].ToString() @items[2].ToString() @items[3].ToString() 
                     </div>
-                    <div class="block-btn-profile" style="margin-left: auto;">
+                    <div class="block-btn-profile">
                         @Html.ActionLink("Профиль", "", "")
+                        @{
+                            if (dataStepStatic.friendsId != null)
+                            {
+                                int[] MyFriendsId = Array.ConvertAll(dataStepStatic.friendsId, s => int.Parse(s));
+
+                                if (MyFriendsId != null)
+                                {
+                                    bool isFriends = MyFriendsId.Contains(Convert.ToInt32(items[0]));
+                                    if (isFriends)
+                                    {
+                                        <p class="yetFriends">Пользователь у вас в друзья</p>
+                                        <div class="DeleteFriends">
+                                            @Html.ActionLink("Удалить из друзей", "Delete", new { idUser = items[0]})
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="AddFriends">
+                                            @Html.ActionLink("Добавить", "addedUser", new { idUser = items[0]})
+                                        </div>
+                                    }
+
+                                }
+                            }                          
+                            else
+                            {
+                                <div class="AddFriends">
+                                    @Html.ActionLink("Добавить", "addedUser", new { idUser = items[0]})
+                                </div>
+                            }
+                                 
+                         }
+                        
+
                     </div>
 
                  </div>
              </div>  
         }
     </div>
+
+    
+
 
 }
 
@@ -51,9 +90,38 @@
             <a class="btn-search" href="#">Поиск</a>
         </div>
         
-    </div>  
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Convert.ToBoolean(TempData["AddedUser"]))
+    {
+        <script>
+            Swal.fire({
+                title: 'Пользователь добавлен в друзья',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        </script>
+    }
+    @if (Convert.ToBoolean(TempData["DeleteUser"]))
+    {
+        <script>
+            Swal.fire({
+                title: 'Пользователь успешно удалён',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        </script>
+    }
 
 }
-
 
 

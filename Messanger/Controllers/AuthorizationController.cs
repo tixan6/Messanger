@@ -52,7 +52,7 @@ namespace Messanger.Controllers
                         connect.ConnectionClose();
                         if (Hash.VerifyHashedPassword(pass, loginInfo.password))
                         {
-                            Connect connectTwo = new Connect($"SELECT age, email, gender, \"Users\".id, \"name\", surname, patronymic, avatar FROM \"Users\" WHERE \"Users\".\"email\" = '{loginInfo.email.Trim()}'");
+                            Connect connectTwo = new Connect($"SELECT age, email, gender, \"Users\".id, \"name\", surname, patronymic, avatar, friends FROM \"Users\" WHERE \"Users\".\"email\" = '{loginInfo.email.Trim()}'");
                             connectTwo.ConnectionOpen();
                                 object itemsTwo = connectTwo.reuslt();
                            
@@ -66,10 +66,12 @@ namespace Messanger.Controllers
                                 dataStepStatic.name = itemsReaderTwo.GetValue(4).ToString();
                                 dataStepStatic.surname = itemsReaderTwo.GetValue(5).ToString();
                                 dataStepStatic.patr = itemsReaderTwo.GetValue(6).ToString();
+                                
 
                                 try
                                 {
                                     dataStepStatic.avatar = (byte[])itemsReaderTwo.GetValue(7);
+                                    dataStepStatic.friendsId = (string[])itemsReaderTwo.GetValue(8);
                                 }
                                 catch (Exception)
                                 {
@@ -182,7 +184,7 @@ namespace Messanger.Controllers
                     connect.ConnectionOpen();
                     connect.reuslt();
                     connect.ConnectionClose();
-                    ViewBag.change = true;
+                    TempData["ResetPassword"] = true;
                     return View("index");
                 }
                 catch (Exception)
@@ -202,16 +204,23 @@ namespace Messanger.Controllers
         [HttpPost]
         public IActionResult ChangePhoto(IFormFile image)
         {
-            
-            byte[] photo = BinaryAvatar.binaryPhotoEncoding(image);
-            string photoUTF = BinaryAvatar.binaryPhotoDecoding(photo);
-            Connect connect = new Connect($"UPDATE \"Users\" SET \"avatar\" = '{photoUTF}'");
-            connect.ConnectionOpen();
-            connect.reuslt();
-            connect.ConnectionClose();
-            ViewBag.changePhoto = true;
-
-            return View("loginData");
+            if (image == null)
+            {
+                return View("loginData");
+            }
+            else 
+            {
+                byte[] photo = BinaryAvatar.binaryPhotoEncoding(image);
+                string photoUTF = BinaryAvatar.binaryPhotoDecoding(photo);
+                Connect connect = new Connect($"UPDATE \"Users\" SET \"avatar\" = '{photoUTF}' WHERE id = {dataStepStatic.id}");
+                connect.ConnectionOpen();
+                connect.reuslt();
+                connect.ConnectionClose();
+                Test.invokeReset();
+                return View("loginData");
+                
+            }
+          
         }
 
     }

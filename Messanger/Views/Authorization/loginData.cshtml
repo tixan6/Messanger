@@ -15,8 +15,7 @@
             <div class="circle-photo-avatar">
                 @if (dataStepStatic.avatar != null)
                 {
-                    <img src="data:image/jpeg;base64,@(System.Text.Encoding.UTF8.GetString(dataStepStatic.avatar))" />
-                   
+                    <img src="data:image/jpeg;base64,@(System.Text.Encoding.UTF8.GetString(dataStepStatic.avatar))" />               
                 }
                 else
                 {
@@ -56,19 +55,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (ViewBag.changePhoto == true)
-        {
-            <script>
-                Swal.fire({
-                          title: 'Аватар измениться в скором времени',
-                  showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                  },
-                  hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                  }
-                })
-            </script>
-        }
+    {
+        <script>
+            Swal.fire({
+                        title: 'Аватар измениться в скором времени',
+                showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        </script>
+    }
 
 }
 

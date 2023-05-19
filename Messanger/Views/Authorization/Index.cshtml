@@ -68,33 +68,34 @@
             </div>
 
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        @if (dataStepStatic.email != null)
-        {
-            <script>
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Вы успешно зарегистрировались',
-                    showConfirmButton: false,
-                    timer: 2000
-                })
-            </script>
-        }
-        @if (ViewBag.change == true)
-        {
-            <script>
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Вы успешно изменили пароль',
-                    showConfirmButton: false,
-                    timer: 2000
-                })
-            </script>
-        }
-
     </body>
-   
+
+
+
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Convert.ToBoolean(TempData["RegisterNew"]))
+    {
+        <script>
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Аккаунт был создан',
+              showConfirmButton: false,
+              timer: 2000
+            })
+        </script>
+    }
+    @if (Convert.ToBoolean(TempData["ResetPassword"]))
+    {
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Пароль был успешно изменён',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    }
 }
 

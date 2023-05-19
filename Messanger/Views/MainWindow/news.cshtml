@@ -1,0 +1,163 @@
+﻿@using Messanger.Controllers;
+
+@{
+    ViewData["Title"] = "News";
+    Layout = "_LayoutUserAccount";
+}
+@model Messanger.Models.NewsAdd;
+@section CenterScreen
+    {
+
+    <div class="RenderSection-center">
+        <div class="place-searching">
+            <input class="search-friends-input" placeholder="Поиск" />
+            <a class="btn-search" href="#">Поиск</a>
+        </div>
+    </div>
+
+
+    <div class="RenderSection-center" id="marginTop-center">
+
+
+
+        @if (Convert.ToBoolean(TempData["NullFriends"]))
+        {
+            <div class="Text-news">
+                <p>Добавте друзей для просмотра статей</p>
+            </div>
+        }
+        else
+        {
+            if (dataStepStatic.MassFiends != null)
+            {
+                if (dataStepStatic.MassFiends.Count != 0)
+                    @foreach (var items in dataStepStatic.MassFiends)
+                    {
+
+                        <div class="block-info-news" id="@items[0]">
+                            <div class="image-block-news">
+                                <img class="image-itemsNews" src="~/img/EmptyAvatar.png" />
+                            </div>
+
+                            <div class="Block-titleTxt">
+                                <div class="Title-news">
+                                    <h2>@items[1]</h2>
+                                </div>
+
+                                <div class="Text-news">
+                                    <p> @items[2] хуй девочки</p>
+                                </div>
+
+
+                                <div class="info-about-sender">
+                                    <p>@items[5]</p>
+                                    <p>@items[4]</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                else
+                {
+                    <p>Нет объявлений</p>
+                }
+
+            }
+            else
+            {
+             <p>Нет объявлений</p>    
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+}
+
+
+@section leftScreen
+{
+
+    <div class="title-changes">
+
+        <button class="modal-link btn" id="addnews-button" data-modal="test">Добавить запись</button>
+        <button class="modal-link btn" id="addnews-button" data-modal="test">Удалить запись</button>
+
+
+
+
+        <div class="modal-overlay" data-modal="test">
+            <div class="modal-table">
+                <div class="modal-table-cell">
+                    <div class="modal">
+                        <button class="modal__close"></button>
+                        <div class="modal__header">Добавление записи</div>
+                        <div class="modal__content">
+
+
+
+                            <form class="inputPhoto-avatar" method="post" action="/MainWindow/addNews" enctype="multipart/form-data">
+                                <div class="display-flex-items-addNews">
+
+                                    <div class="PlacesFor-photo">
+
+                                        <div class="Photo-radactor">
+                                            <img src="data:image/jpeg;base64,@(System.Text.Encoding.UTF8.GetString(dataStepStatic.avatar))" />
+                                        </div>
+
+                                        <div>
+                                            <label class="input-file">
+                                                <input type="file" class="form-control" name="image">
+                                                <span class="input-file-btn">Выберите фото</span>
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="title-block">
+                                        <h4>Заголовок</h4>
+                                        <div class="Title-text">
+                                            @Html.ValidationMessageFor(x => x.title)
+                                            @Html.EditorFor(x => x.title)
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="text-description">
+                                    @Html.ValidationMessageFor(x => x.textDesc)
+                                    @Html.TextAreaFor(x => x.textDesc, new {htmlAttributes = new {placeholder = "Текст"}})
+                                </div>
+
+
+
+                                <button type="submit" class="btn">Опубликовать</button>
+
+
+
+
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    </div>
+    
+
+
+}

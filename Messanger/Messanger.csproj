@@ -20,4 +20,8 @@
     <Folder Include="wwwroot\js\Popup\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\ModalViews.js" />
+  </ItemGroup>
+
 </Project>

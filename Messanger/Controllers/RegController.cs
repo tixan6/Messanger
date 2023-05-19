@@ -21,6 +21,8 @@ namespace Messanger.Controllers
         public static int id { get; set; }        
         public static string patr { get; set; }        
         public static byte[] avatar { get; set; }        
+        public static string[] friendsId { get; set; }        
+        public static List<List<object>> MassFiends { get; set; }        
     }
         
     public class RegController : Controller
@@ -74,6 +76,7 @@ namespace Messanger.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 return View();
             }
             else
@@ -100,6 +103,7 @@ namespace Messanger.Controllers
                         connect.ConnectionOpen();
                         object data = connect.reuslt();
                         connect.ConnectionClose();
+                        TempData["RegisterNew"] = true;
                         return Redirect("/Authorization/index");
                     }
                     else

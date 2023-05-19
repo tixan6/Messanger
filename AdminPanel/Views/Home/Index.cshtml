@@ -1,0 +1,102 @@
+﻿@using AdminPanel.Scripts;
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <div class="Title-block">
+        <h2>Проверка постов</h2>
+
+
+        <div class="all-items">
+
+
+            @if (Convert.ToBoolean(TempData["empty"]))
+            {
+                <div class="Text-news">
+                    <p>Список объявлений пуст </p>
+                </div>
+            }
+            else
+            {
+                @foreach (var items in ListViews.list)
+                {
+
+                    <div class="block-info-news" id="@items[0]">
+                        <div class="Block-titleTxt">
+                            <div class="Title-news">
+                                <h3>@items[4]</h3>
+                            </div>
+
+                            <div class="image-block-news">
+                                <img class="image-itemsNews" src="data:image/jpeg;base64,@(System.Text.Encoding.UTF8.GetString((byte[])items[2]))" />
+                            </div>
+
+                            <div class="Text-news">
+                                <p>@items[3]</p>
+                            </div>
+                            <div class="info-about-sender">
+
+                                <div class="info">
+                                    <div class="autor" id="horizontal-flex">
+                                        <p class="autor" id="bold">Автор:</p>
+                                        <p class="margin-txt">@items[5]</p>
+                                    </div>
+                                    <div class="data" id="horizontal-flex">
+                                        <p id="bold">Дата:</p>
+                                        <p class="margin-txt">@items[6]</p>
+                                    </div>
+                                </div>
+
+                                <div class="AcceptOrCancel">
+                                    <div class="cansel-button" id="commonDATA">
+                                        @Html.ActionLink("Отклонить", "Delete", new { id = @items[0]})
+                                    </div>
+                                    <div class="accept-button" id="commonDATA">
+                                        @Html.ActionLink("Добавить", "Added", new { id = @items[0]})
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (Convert.ToBoolean(TempData["delete"]))
+{
+
+    <script>
+        Swal.fire({
+            title: 'Публикация статьи отменена',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
+    </script>
+}
+@if (Convert.ToBoolean(TempData["added"]))
+{
+
+    <script>
+        Swal.fire({
+            title: 'Публикация опубликована',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
+    </script>
+}

@@ -1,0 +1,81 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.Title-block {
+    width: 100%;
+    height: 100%;
+    border: solid 1px #808080;
+    border-radius: 5px;
+}
+
+
+/*Модерариуемые ITEMS*/
+.block-info-news {
+    transition: all 0.5s ease;
+    height: 100%;
+    width: 80%;
+    border: solid 1px #000000;
+    margin: 30px;
+    border-radius: 10px;
+}
+.block-info-news:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.all-items {
+    text-align: -webkit-center;
+}
+#horizontal-flex {
+    display: flex;
+}
+#bold {
+    font-weight: bold;
+}
+.info-about-sender {
+    margin: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.margin-txt {
+    margin-left: 5px;
+}
+.image-itemsNews {
+    width: 300px;
+    height: 300px;
+    border: solid 3px #000000;
+    border-radius: 6px;
+    object-fit: cover;
+}
+#commonDATA a {
+    font-size: 20px;
+}
+.cansel-button a {
+    color: #ff3e3e;
+}
+    .cansel-button a:hover {
+        text-decoration: line-through;
+    }
+
+.accept-button a {
+    color: #5eff49;
+}
+    .accept-button a:hover {
+        text-decoration: solid;
+    }

@@ -1,4 +1,5 @@
 ﻿using Messanger.Models.ChangesSettings;
+using Messanger.Scripts;
 using Messanger.Scripts.ConnectionToDataBase;
 using Messanger.Scripts.HashPasswd;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +19,12 @@ namespace Messanger.Controllers
         {
             if (ModelState.IsValid)
             {                
-                Connect connect = new Connect($"UPDATE \"Users\" SET \"name\" = '{name._name}'");
+                Connect connect = new Connect($"UPDATE \"Users\" SET \"name\" = '{name._name}' WHERE id = {dataStepStatic.id}");
                 connect.ConnectionOpen();
                 connect.reuslt();
                 connect.ConnectionClose();
-                ViewBag.nameChange = name;
+                TempData["ChangeName"] = true;
+                Test.invokeReset();
                 return View();
             }
             else 
@@ -31,12 +33,6 @@ namespace Messanger.Controllers
             }
             
         }
-
-
-
-
-
-
 
         public IActionResult ChangeSurname()
         {
@@ -48,11 +44,12 @@ namespace Messanger.Controllers
         {
             if (ModelState.IsValid)
             {
-                Connect connect = new Connect($"UPDATE \"Users\" SET \"surname\" = '{surname._surname}'");
+                Connect connect = new Connect($"UPDATE \"Users\" SET \"surname\" = '{surname._surname}' WHERE id = {dataStepStatic.id}");
                 connect.ConnectionOpen();
                 connect.reuslt();
                 connect.ConnectionClose();
-                ViewBag.surname = surname;
+                TempData["ChangeSurname"] = true;
+                Test.invokeReset();
                 return View();
             }
             else
@@ -74,11 +71,12 @@ namespace Messanger.Controllers
         {
             if (ModelState.IsValid)
             {
-                Connect connect = new Connect($"UPDATE \"Users\" SET \"patronymic\" = '{patronymic._patronymic}'");
+                Connect connect = new Connect($"UPDATE \"Users\" SET \"patronymic\" = '{patronymic._patronymic}' WHERE id = {dataStepStatic.id}");
                 connect.ConnectionOpen();
                 connect.reuslt();
                 connect.ConnectionClose();
-                ViewBag.patronymic = patronymic;
+                TempData["ChangePatronymic"] = true;
+                Test.invokeReset();
                 return View();
             }
             else
@@ -101,13 +99,13 @@ namespace Messanger.Controllers
         public IActionResult ChangePassword(ChangesPassword password)
         {
             if (ModelState.IsValid)
-            {
-                
-                Connect connect = new Connect($"UPDATE \"Users\" SET \"password\" = '{Hash.HashPassword(password._password)}'");
+            {                
+                Connect connect = new Connect($"UPDATE \"Users\" SET \"password\" = '{Hash.HashPassword(password._password)}' WHERE id = {dataStepStatic.id}");
                 connect.ConnectionOpen();
                 connect.reuslt();
                 connect.ConnectionClose();
-                ViewBag.password = true;
+                TempData["ChangePassword"] = true;
+                Test.invokeReset();
                 return View();
             }
             else
@@ -130,11 +128,12 @@ namespace Messanger.Controllers
             if (ModelState.IsValid)
             {
 
-                Connect connect = new Connect($"UPDATE \"Users\" SET \"email\" = '{email._email}'");
+                Connect connect = new Connect($"UPDATE \"Users\" SET \"email\" = '{email._email}' WHERE id = {dataStepStatic.id}");
                 connect.ConnectionOpen();
                 connect.reuslt();
                 connect.ConnectionClose();
-                ViewBag.email = true;
+                TempData["ChangeEmail"] = true;
+                Test.invokeReset();
                 return View();
             }
             else
@@ -143,10 +142,6 @@ namespace Messanger.Controllers
             }
 
         }
-
-
-
-
 
     }
 }

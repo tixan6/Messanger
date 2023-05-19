@@ -28,7 +28,7 @@
                     }
                     else
                     {
-                        <img src="~/img/EmptyAvatar.png"/>
+                        <img class="place-circle-photo" src="~/img/EmptyAvatar.png" />
                     }
                 </div>
             </div>
@@ -52,11 +52,11 @@
                         </div>
 
                         <div class="Group-box" id="message-box-id">
-                            @Html.ActionLink("Вести знакомых", "reg", "ere")
+                            @Html.ActionLink("Вести", "news", "MainWindow")
                             <img src="~/img/icons/Mehano.png" />
                         </div>
                         <div class="Exit-box" id="message-box-id">
-                            @Html.ActionLink("Выход", "reg", "ere")
+                            @Html.ActionLink("Выход", "Index", "Authorization")
                         </div>
                         
                     </div>
@@ -101,10 +101,41 @@
         </div>
     </section>
 
-    
-
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/smoothShowing.js"></script>
-    <script src="~/js/Search.js" ></script>
+    <script src="~/js/Search.js"></script>
+    <script src="~/js/ReactionOnClickToBtnDeleteOrAdd.js"></script>
+    <script src="~/js/ModalViews.js"></script>
+
+    @if (Convert.ToBoolean(TempData["ErrorNews"]))
+    {
+
+        <script>
+            Swal.fire({
+                title: 'Невалидный ввод данных',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        </script>
+    }
+    @if (Convert.ToBoolean(TempData["SuccsesNews"]))
+    {
+
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Публикация на модерации',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    }
+
+</body>
 </html>

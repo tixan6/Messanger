@@ -74,18 +74,19 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if (ViewBag.email == true)
+    @if (Convert.ToBoolean(TempData["ChangeEmail"]))
     {
         <script>
             Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Вы успешно изменили почту',
-                showConfirmButton: false,
-                timer: 2000
+                title: 'Почта успешно изменена',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
             })
         </script>
-        ViewBag.email = false;
     }
 }
 
